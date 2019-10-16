@@ -1,16 +1,17 @@
-import operator
+def PatternCount(Text, Pattern):
+    count = 0
+    for i in range(len(Text) - len(Pattern)+1):
+        if Text[i:i+len(Pattern)] == Pattern:
+            count += 1
+    return (count)
 
-def FrequencyMap(Text, k):
-    freq = {}
-    n = len(Text)
-    for i in range(n - k + 1):
-        Pattern = Text[i:i+k]
-        if Pattern in freq:
-            freq[Pattern] += 1
-        else:
-            freq[Pattern] = 1
-    return (freq)
-    # return (max(freq.iteritems(), key=operator.itemgetter(1))[0])
+# This sequence, Text, is proposed ori region of Thermotoga petrophila
+# We are trying to find what we believe that DnaA box of different bacterium is inside this bacterium.
+# As we see in the result, it is 0
+# meaning that DnaA box is definitely different from these two types of bactiera
 
-print(FrequencyMap("CGATATATCCATAG", 3))
-print(FrequencyMap("ACGTTGCATGTCGCATGATGCATGAGAGCT", 4))
+Text = "AACTCTATACCTCCTTTTTGTCGAATTTGTGTGATTTATAGAGAAAATCTTATTAACTGAAACTAAAATGGTAGGTTTGGTGGTAGGTTTTGTGTACATTTTGTAGTATCTGATTTTTAATTACATACCGTATATTGTATTAAATTGACGAACAATTGCATGGAATTGAATATATGCAAAACAAACCTACCACCAAACTCTGTATTGACCATTTTAGGACAACTTCAGGGTGGTAGGTTTCTGAAGCTCTCATCAATAGACTATTTTAGTCTTTACAAACAATATTACCGTTCAGATTCAAGATTCTACAACGCTGTTTTAATGGGCGTTGCAGAAAACTTACCACCTAAAATCCAGTATCCAAGCCGATTTCAGAGAAACCTACCACTTACCTACCACTTACCTACCACCCGGGTGGTAAGTTGCAGACATTATTAAAAACCTCATCAGAAGCTTGTTCAAAAATTTCAATACTCGAAACCTACCACCTGCGTCCCCTATTATTTACTACTACTAATAATAGCAGTATAATTGATCTGA"
+count_1 = PatternCount(Text, "ATGATCAAG")
+count_2 = PatternCount(Text, "CTTGATCAT")
+
+print(count_1 + count_2)
